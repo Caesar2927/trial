@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background-image: url("background.avif");
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-size: cover;
+            flex-direction: column;
+        }
+
+        .center {
+            margin-top: 350px;
+            align-self: center;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .answer {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-style: italic;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .yes {
+            height: 30px;
+            width: 120px;
+            padding: 5px;
+            margin-right: 30px;
+            font-size: 20px;
+            background-color: pink;
+            font-style: italic;
+            transition: opacity 1s ease-in-out;
+            border-radius: 100%;
+            cursor:pointer;
+        }
+
+        .no {
+            margin-left: 20px;
+            font-size: 20px;
+            height: 30px;
+            width: 120px;
+            padding: 5px;
+            background-color: pink;
+            cursor: pointer;
+            font-style: italic;
+            transition: transform 0.5s ease-in-out;
+            transition: opacity 1s ease-in-out;
+            border-radius: 100%;
+        }
+
+        .reply {
+            display: none;
+            font-size: 50px;
+            flex-direction: column;
+            justify-content: center;
+            margin-top: 70px;
+            align-self: center;
+        }
+
+        .hidden {
+            opacity: 0;
+        }
+
+        #card1,
+        #card2 {
+            position: relative;
+            width: 150px;
+            height: 150px;
+            margin: 0 10px;
+        }
+
+        .image,
+        .text {
+            width: 500px;
+            height: 500px;
+            background-size: cover;
+            border-radius: 100%;
+            margin-right: 150px;
+            top: 0;
+            left: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        #image1 {
+            background-image: url("hands.jpg");
+            opacity: 1;
+            background-size: cover;
+        }
+
+        #image2 {
+            background-image: url("her.jpg");
+            opacity: 0;
+            background-size: cover;
+            background-position: center;
+        }
+
+        #text1 {
+            text-align: center;
+            color: white;
+            opacity: 1;
+        }
+
+        #text2 {
+            text-align: center;
+            color: white;
+            opacity: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="center" id="center">
+        <h1 style="margin-left: 70px;">my dear keeru</h1>
+        <h1 style="margin-left: 50px;">do you love me ??</h1>
+    </div>
+
+    <div class="answer" id="answer">
+        <div class="yes" id="yes">
+            yes of course
+        </div>
+        <div class="no" id='no' onmouseover="shiftDiv()">
+            umm not sure
+        </div>
+    </div>
+
+    <div class="reply" id="reply">
+
+        <div class="card" id="card1">
+            <div class="image" id="image1"></div>
+            <div class="text" id="text1">i will never let go these hands</div>
+        </div>
+
+        <div class="card" id="card2">
+            <div class="image" id="image2"></div>
+            <div class="text" id="text2">neither this girl</div>
+        </div>
+
+    </div>
+
+    <script>
+        function shiftDiv() {
+            const div = document.getElementById('no');
+            const screenWidth = window.innerWidth - div.clientWidth;
+            const screenHeight = window.innerHeight - div.clientHeight;
+
+            const randomX = Math.floor(Math.random() * screenWidth * 0.4);
+            const randomY = Math.floor(Math.random() * screenHeight * 0.4);
+
+            div.style.transform = `translate(${randomX}px, ${randomY}px)`;
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            document.getElementById('yes').addEventListener('click', function () {
+
+                const noDiv = document.getElementById("no");
+                noDiv.classList.add('hidden');
+
+                const yesDiv = document.getElementById('yes');
+                yesDiv.classList.add('hidden');
+
+                const centerDiv = document.getElementById('center');
+                centerDiv.classList.add('hidden');
+
+
+                const replyDiv = document.getElementById("reply");
+                replyDiv.style.display = 'flex';
+            });
+
+            const content1 = document.getElementById('card1');
+            const content2 = document.getElementById('card2');
+
+            content1.addEventListener('mouseover', function () {
+                const i2 = document.getElementById('image2');
+                const t2 = document.getElementById('text2');
+                const i1 = document.getElementById('image1');
+                const t1 = document.getElementById('text1');
+                i2.style.opacity = 1;
+                t2.style.opacity = 1;
+                i1.style.opacity = 0;
+                t1.style.opacity = 0;
+            });
+
+            content2.addEventListener('mouseover', function () {
+                const i2 = document.getElementById('image2');
+                const t2 = document.getElementById('text2');
+                const i1 = document.getElementById('image1');
+                const t1 = document.getElementById('text1');
+                i2.style.opacity = 0;
+                t2.style.opacity = 0;
+                i1.style.opacity = 1;
+                t1.style.opacity = 1;
+            });
+        });
+    </script>
+</body>
+
+</html>
